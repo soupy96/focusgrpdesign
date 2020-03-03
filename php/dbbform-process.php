@@ -3,58 +3,60 @@
 $errorMSG = "";
 
 // If the first name is empty or invalid
-if (empty($_POST["name"])) {
+if (empty($_POST["dbbname"])) {
     $errorMSG .= "Name is required";
 } else {
-    $testingname = test_input($_POST["name"]);
-    if (!preg_match("/^[a-zA-Z ]*$/",$testingname)) {
+    $testingdbbname = test_input($_POST["dbbname"]);
+    if (!preg_match("/^[a-zA-Z ]*$/",$testingdbbname)) {
         $errorMSG = "Name must only include letters and spaces";
-        $name = "";
+        $dbbname = "";
     } else {
-        $name = $_POST["name"];
+        $dbbname = $_POST["dbbname"];
     }
 }
 
 // If the email is empty or invalid
-if (empty($_POST["email"])) {
+if (empty($_POST["dbbemail"])) {
     $errorMSG = "Email is required";
 } else {
-    $testingemail = test_input($_POST["email"]);
-    if (!filter_var($testingemail, FILTER_VALIDATE_EMAIL)) {
-        $errorMSG = "Invalid email format";
-        $email = "";
+    $testingdbbemail = test_input($_POST["dbbemail"]);
+    if (!filter_var($testingdbbemail, FILTER_VALIDATE_EMAIL)) {
+        $errorMSG = "Invalid dbbemail format";
+        $dbbemail = "";
     } else {
-        $email = $_POST["email"];
+        $dbbemail = $_POST["dbbemail"];
     }
 }
 
 // If the phonenumber is empty or invalid
-if (empty($_POST["phonenumber"])) {
-    $phonenumber = "User did not leave a phone number";
+if (empty($_POST["dbbphonenumber"])) {
+    // $errorMSG .= "Phone number is required ";
+    $dbbphonenumber = "User did not leave a phone number";
 } else {
-    $testingphone = test_input($_POST["phonenumber"]);
-    if(!preg_match("/^(?:\+?1[-. ]?)?\(?([2-9][0-8][0-9])\)?[-. ]?([2-9][0-9]{2})[-. ]?([0-9]{4})$/", $testingphone)) {
+    $testingdbbphone = test_input($_POST["dbbphonenumber"]);
+    if(!preg_match("/^(?:\+?1[-. ]?)?\(?([2-9][0-8][0-9])\)?[-. ]?([2-9][0-9]{2})[-. ]?([0-9]{4})$/", $testingdbbphone)) {
         $errorMSG = "Invalid phone number format";
-        $phonenumber = "";
+        $dbbphonenumber = "";
     } else {
-        $phonenumber = $_POST["phonenumber"];
+        $dbbphonenumber = $_POST["dbbphonenumber"];
     }
 }
 
 // If the company is empty or invalid
-if (empty($_POST["company"])) {
+if (empty($_POST["dbbcompany"])) {
     // $errorMSG .= "Company is required";
-    $company = "User did not leave a company name";
+    $dbbcompany = "User did not leave a company name";
 } else {
-    $company = test_input($_POST["company"]);
+    $dbbcompany = test_input($_POST["dbbcompany"]);
 }
 
 // If the comment is empty or invalid
-if (empty($_POST["comment"])) {
-    $comment = "User did not leave a comment";
+if (empty($_POST["dbbcomment"])) {
+    $errorMSG = "Comment is required";
+    // $comment = "User did not leave a comment";
 } else {
-    $testingcomment = test_input($_POST["comment"]);
-    $comment = $testingcomment;
+    $testingdbbcomment = test_input($_POST["dbbcomment"]);
+    $dbbcomment = $testingdbbcomment;
 }
 
 function test_input($data) {
@@ -64,34 +66,31 @@ function test_input($data) {
     return $data;
 }
 $EmailTo = "michael@blackridgestrategy.com"; //This is for testing
-//$EmailTo = "dv27nfhr5nsl@a2plcpnl0377.prod.iad2.secureserver.net"; // This is for testing
-//$EmailTo = "michael@focusgrp.ca"; // This is for testing
-//$EmailTo = "mike@focusgrp.ca"; //This is for testing
-//$EmailTo = "amir@focusgrp.ca"; // This is for live
-$Subject = "New Form Submission Recieved";
+$Subject = "New Form Submission From Design";
 
 // prepare email body text
 $Body = "";
 $Body .= "Name: ";
-$Body .= $name;
+$Body .= $dbbname;
 $Body .= "\n";
 $Body .= "Email: ";
-$Body .= $email;
+$Body .= $dbbemail;
 $Body .= "\n";
 $Body .= "Phone Number: ";
-$Body .= $phonenumber;
+$Body .= $dbbphonenumber;
 $Body .= "\n";
 $Body .= "Company: ";
-$Body .= $company;
+$Body .= $dbbcompany;
 $Body .= "\n";
 $Body .= "What can we do for you?: ";
-$Body .= $comment;
+$Body .= $dbbcomment;
 $Body .= "\n";
+
 
 // redirect to success page
 if ($errorMSG == ""){
    // send email if there are no errors
-    $success = mail($EmailTo, $Subject, $Body, "From:".$email);
+    $success = mail($EmailTo, $Subject, $Body, "From:".$dbbemail);
     // echo success for the ajax part
     echo "success";
 }else{

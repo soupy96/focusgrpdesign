@@ -195,7 +195,148 @@
 			}catch(d){console.log("Failure at Presize of Slider:"+d)}						
 		};
 	</script>
+	<!-- Main CSS -->
 	<style type="text/css" id="wp-custom-css">
+		/* Contact Styles */
+		.contact {
+			width: 100%;
+			height: 100%;
+			float: left;
+			background-color: #2A5769;
+			margin-bottom: 2.5%;
+		}
+
+		.maincenter {
+			width: 80%;
+			height: 100%;
+			float: left;
+			margin-left: 10%;
+			margin-right: 10%;
+		}
+
+		.contactleft{
+			width: 100%;
+			float: left;
+			height: 100%;
+		}
+
+		.contactleft h1 {
+			width: 90%;
+			color: #f9b515;
+			line-height: 0;
+		}
+
+		.contactreq {
+			color: #ffffff;
+			margin-bottom: 4%;
+		}
+
+		.contactform {
+			width: 100%;
+			height: 100%;
+			float: left;
+		}
+
+		#contactForm {
+			width: 100%;
+			float: left;
+			height: 100%;
+		}
+
+		.form-group {
+			width: 100%;
+			margin-bottom: 4%;
+			float: left;
+		}
+
+		.form-group label {
+			color: #ffffff;
+		}
+
+		.left-form {
+			float: left;
+		}
+
+		.right-form {
+			float: left;
+		}
+
+		input {
+			width: 100%;
+			height: 100%;
+			/* border-bottom: 1px solid #fA9600 !important; */
+			background-color: #2A5769;
+			color: #ffffff;
+			border: none;
+			font-size: 1.25em;
+			padding: 5px 5px 5px 5px !important;
+		}
+
+		input::-ms-input-placeholder, textarea::-ms-input-placeholder {
+			color: #ffffff;
+		}
+
+		input::-moz-placeholder, textarea::-moz-placeholder {
+			color: #ffffff;
+			opacity: 1;
+		}
+
+		.with-errors {
+			width: 100%;
+			float: left;
+			color: #fA9600;
+		}
+
+		.with-errors ul {
+			padding: 0px;
+			margin: 0px;
+		}
+
+		.with-errors li {
+			list-style: none;
+		}
+
+		::placeholder {
+			color: #ffffff;
+		}
+
+		textarea {
+			width: 100%;
+			height: 100%;
+			overflow-y: hidden;
+			/* border-bottom: 1px solid #fA9600 !important; */
+			/* background-color: #2A5769; */
+			/* color: #ffffff; */
+			border: none;
+			font-size: 1.25em;
+			font-family: 'Roboto', sans-serif;
+		}
+
+		#company {
+			padding-bottom: 28px;
+		}
+
+		#dbbform-submit {
+			background-color: #fA9600;
+			color: #ffffff;
+			border: 0px;
+			float: right;
+			padding: 15px 30px 15px 30px;
+			font-size: 1.25em;
+		}
+
+		#dbbmsgSubmit {
+			color: #fA9600;
+			width: 24%;
+			height: 5%;
+			float: right;
+		}
+
+		.text-danger {
+			margin-top: 59% !important;
+		}
+		/* End of Contact Styles */
+	
 		body {
 			background-color: #383F47;
 		}
@@ -674,6 +815,10 @@
 			#nf-field-19 {
 			margin-left: 830px;
 			}
+
+			.contactleft {
+				margin-top: 8%;
+			}
 		}
 
 		@media screen and (max-width: 1100px) {		
@@ -785,7 +930,8 @@
 			}
 			
 			.contact-bottom .wpb_wrapper div[style]{
-				height: 110vh !important;
+				height: 100% !important;
+				padding-bottom: 10%;
 			}
 			
 			.nf-form-title h3 {
@@ -869,6 +1015,14 @@
 		@media screen and (max-width: 800px) {
 			.vc_custom_1577473665212 {
 				margin-bottom: -4.7% !important;
+			}
+
+			.maincenter {
+				width: 100%;
+				height: 100%;
+				float: left;
+				margin-left: 0%;
+				margin-right: 0%;
 			}
 		}
 
@@ -1043,7 +1197,7 @@
 			}
 			
 			.contact-bottom .wpb_wrapper div[style]{
-				height: 950px !important;
+				height: 100% !important;
 				margin-top: 5% !important;
 			}
 			
@@ -1546,7 +1700,50 @@
 																									Notice: JavaScript is required for this content.
 																								</noscript>
 																								<div id="nf-form-3-cont" class="nf-form-cont" aria-live="polite" aria-labelledby="nf-form-title-3" aria-describedby="nf-form-errors-3" role="form">
-																									<div class="nf-loading-spinner"></div>
+																									<!-- <div class="nf-loading-spinner"></div> -->
+																									<!-- THIS IS WERE THE CONTACT FORM IS -->
+																									<div class="maincenter inline-photo-still show-on-scroll">
+																										<div class="contactleft">
+																											<h1>Get a quote</h1>
+																											<div class="redbox"></div>
+																										</div>
+																										<form role="form" id="dbbcontactForm" data-toggle="validator" class="shake">
+																											<p class="contactreq">
+																												Fields marked with &nbsp;&nbsp;<span style="color: #ff0000;">*</span>&nbsp;&nbsp; are required
+																											</p>
+																											<div class="contactform">
+																												<div class="form-group left-form">
+																													<label>Name <span style="color: #ff0000;">*</span></label>
+																													<input type="text" id="dbbname" required>
+																													<div class="help-block with-errors"></div>
+																												</div>
+																												<div class="form-group left-form">
+																													<label>Email <span style="color: #ff0000;">*</span></label>
+																													<input type="email" id="dbbemail" required>
+																													<div class="help-block with-errors"></div>
+																												</div>
+																												<div class="form-group right-form">
+																													<label>Phone</label>
+																													<input type="text" id="dbbphonenumber">
+																													<div class="help-block with-errors"></div>
+																												</div>
+																												<div class="form-group last right-form">
+																													<label>Company</label>
+																													<input type="text" id="dbbcompany">
+																													<div class="help-block with-errors"></div>
+																												</div>
+																												<div class="form-group left-form">
+																													<label>How May We Help You? <span style="color: #ff0000;">*</span></label>
+																													<textarea id="dbbcomment" required></textarea>
+																													<div class="help-block with-errors"></div>
+																												</div>
+																											</div>
+																											<button type="submit" id="dbbform-submit" class="btn btn-success btn-lg pull-right ">Submit</button>
+																											<div id="dbbmsgSubmit" class="h3 text-center hidden"></div>
+																											<div class="clearfix"></div>
+																										</form>
+																									</div>
+																								</div>
 																								</div>
 																								<!-- TODO: Move to Template File. -->
 																								<script>
@@ -1665,30 +1862,17 @@
 												</div>
 											</div>
 										</section>
-						</div><!-- .entry-content -->
-
-						
-						
-						
-						
-						
-					</article><!-- #post-## -->
-
-				</div>
-
-				
-			</div>
-
+									</div><!-- .entry-content -->
+								</article><!-- #post-## -->
+							</div>
+						</div>
+					</div>
+				</div><!-- .block-content -->
+			</div><!-- #main-content -->
+		</div><!-- #main -->
+		<div id="lazy-loading-point">
 		</div>
-	</div><!-- .block-content -->
-
-	</div><!-- #main-content -->
-
-
-			</div><!-- #main -->
-			<div id="lazy-loading-point"></div>
-
-				</div><!-- #page -->
+	</div><!-- #page -->
 
 		
 		<link rel='stylesheet' id='vc_animate-css-css'  href='./wp-content/plugins/js_composer/assets/lib/bower/animate-css/animate.min.css?ver=6.0.2' type='text/css' media='all' />
