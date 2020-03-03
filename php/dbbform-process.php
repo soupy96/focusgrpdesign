@@ -3,28 +3,15 @@
 $errorMSG = "";
 
 // If the first name is empty or invalid
-if (empty($_POST["firstname"])) {
-    $errorMSG .= "First Name is required";
+if (empty($_POST["name"])) {
+    $errorMSG .= "Name is required";
 } else {
-    $testingfirstname = test_input($_POST["firstname"]);
-    if (!preg_match("/^[a-zA-Z ]*$/",$testingfirstname)) {
-        $errorMSG = "First Name must only include letters and spaces";
-        $firstname = "";
+    $testingname = test_input($_POST["name"]);
+    if (!preg_match("/^[a-zA-Z ]*$/",$testingname)) {
+        $errorMSG = "Name must only include letters and spaces";
+        $name = "";
     } else {
-        $firstname = $_POST["firstname"];
-    }
-}
-
-// If the last name is empty or invalid
-if (empty($_POST["lastname"])) {
-    $errorMSG .= "Last Name is required";
-} else {
-    $testinglastname = test_input($_POST["lastname"]);
-    if (!preg_match("/^[a-zA-Z ]*$/",$testinglastname)) {
-        $errorMSG = "Last Name must only include letters and spaces";
-        $lastname = "";
-    } else {
-        $lastname = $_POST["lastname"];
+        $name = $_POST["name"];
     }
 }
 
@@ -43,7 +30,7 @@ if (empty($_POST["email"])) {
 
 // If the phonenumber is empty or invalid
 if (empty($_POST["phonenumber"])) {
-    $errorMSG .= "Phone number is required ";
+    $phonenumber = "User did not leave a phone number";
 } else {
     $testingphone = test_input($_POST["phonenumber"]);
     if(!preg_match("/^(?:\+?1[-. ]?)?\(?([2-9][0-8][0-9])\)?[-. ]?([2-9][0-9]{2})[-. ]?([0-9]{4})$/", $testingphone)) {
@@ -54,20 +41,20 @@ if (empty($_POST["phonenumber"])) {
     }
 }
 
-// If the comment is empty or invalid
-if (empty($_POST["comment"])) {
-    $comment = "User did not leave a comment";
-} else {
-    $testingcomment = test_input($_POST["comment"]);
-    $comment = $testingcomment;
-}
-
 // If the company is empty or invalid
 if (empty($_POST["company"])) {
     // $errorMSG .= "Company is required";
     $company = "User did not leave a company name";
 } else {
     $company = test_input($_POST["company"]);
+}
+
+// If the comment is empty or invalid
+if (empty($_POST["comment"])) {
+    $comment = "User did not leave a comment";
+} else {
+    $testingcomment = test_input($_POST["comment"]);
+    $comment = $testingcomment;
 }
 
 function test_input($data) {
@@ -85,11 +72,8 @@ $Subject = "New Form Submission Recieved";
 
 // prepare email body text
 $Body = "";
-$Body .= "First Name: ";
-$Body .= $firstname;
-$Body .= "\n";
-$Body .= "Last Name: ";
-$Body .= $lastname;
+$Body .= "Name: ";
+$Body .= $name;
 $Body .= "\n";
 $Body .= "Email: ";
 $Body .= $email;
@@ -97,11 +81,11 @@ $Body .= "\n";
 $Body .= "Phone Number: ";
 $Body .= $phonenumber;
 $Body .= "\n";
-$Body .= "What can we do for you?: ";
-$Body .= $comment;
-$Body .= "\n";
 $Body .= "Company: ";
 $Body .= $company;
+$Body .= "\n";
+$Body .= "What can we do for you?: ";
+$Body .= $comment;
 $Body .= "\n";
 
 // redirect to success page

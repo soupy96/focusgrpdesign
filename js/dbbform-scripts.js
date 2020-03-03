@@ -1,11 +1,14 @@
-$("#contactForm").validator().on("submit", function (event) {
+jQuery("#contactForm").validator().on("submit", function (event) {
+    console.log("1");
     if (event.isDefaultPrevented()) {
         // handle the invalid form...
+        console.log("3");
         formError();
         submitMSG(false, "You might have forgotten something. Please try again.");
     } else {
         // everything looks good!
         event.preventDefault();
+        console.log("2");
         submitForm();
     }
 });
@@ -13,17 +16,18 @@ $("#contactForm").validator().on("submit", function (event) {
 
 function submitForm(){
     // Initiate Variables With Form Content
-    var firstname = $("#firstname").val();
-    var lastname = $("#lastname").val();
-    var email = $("#email").val();
-    var phonenumber = $("#phonenumber").val();
-    let comment = $("#comment").val();
-    var company = $("#company").val();
+    var name = $("#nf-field-16").val();
+    var email = $("#nf-field-17").val();
+    var phonenumber = $("#nf-field-25").val();
+    var company = $("#nf-field-20").val();
+    let comment = $("#nf-field-18").val();
 
-    $.ajax({
+    console.log("4");
+
+    jQuery.ajax({
         type: "POST",
-        url: "php/form-process.php",
-        data: "firstname=" + firstname + "&lastname=" + lastname + "&email=" + email + "&phonenumber=" + phonenumber + "&comment=" + comment + "&company=" + company,
+        url: "php/dbbform-process.php",
+        data: "firstname=" + name + "&email=" + email + "&phonenumber=" + phonenumber + "&company=" + company + "&comment=" + comment,
         success : function(text){
             if (text == "success"){
                 formSuccess();
@@ -37,21 +41,23 @@ function submitForm(){
 
 function formSuccess(){
     // $("#contactForm")[0].reset();
-    submitMSG(true, "Thanks for reaching out to us. We'll be in contact shortly!")
+    submitMSG(true, "Thanks for reaching out to us. We'll be in contact shortly!");
+    console.log("success");
 }
 
 function formError(){
-    $("#contactForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-        $(this).removeClass();
+    jQuery("#contactForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+        jQuery(this).removeClass();
+        console.log("error");
     });
 }
 
 function submitMSG(valid, msg){
     if(valid){
         var msgClasses = "h3 text-center tada animated text-success";
-        $("#form-submit").attr("style", "display: none;");
+        jQuery("#form-submit").attr("style", "display: none;");
     } else {
         var msgClasses = "h3 text-center text-danger";
     }
-    $("#msgSubmit").removeClass().addClass(msgClasses).text(msg);
+    jQuery("#msgSubmit").removeClass().addClass(msgClasses).text(msg);
 }
