@@ -200,6 +200,34 @@
 	</script>
 	<!-- Main CSS -->
 	<style type="text/css" id="wp-custom-css">
+			/* These animations are at the top of the CSS files because they wouldn't work in IE if they were further down. CURSE YOU IE!!! */
+		@keyframes checked-anim {
+			100% {
+				width: 150px;
+				height: 350px;
+				border-radius: 0;
+			}
+		}
+
+		@keyframes not-checked-anim {
+			0% {
+				width: 150px;
+				height: 350px;
+			}
+		}
+
+		@keyframes show-links {
+			0% {
+				opacity: 0;
+			}
+			90% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+
 		/* Contact Styles */
 		.contact {
 			width: 100%;
@@ -1044,6 +1072,154 @@
 				color: #393f47 !important;
 				margin: 0 !important;
 			}
+
+			.maindesktoplogo {
+				display: none !important;
+			}
+
+			.mainmobilelogo {
+				display: inline !important;
+			}
+
+			.bg-image {
+				background-position: center right !important;
+				margin-top: -200px !important;
+			}
+
+			.biggernavbox {
+				display: none;
+			}
+
+			.landingtitle {
+				margin-top: 0vh !important;
+				color: #ffffff !important;
+			}
+
+			.landingtext {
+				color: #ffffff !important;
+			}
+
+			/* Styles for the mobile nav */
+			/* The animations for the mobile menu are at the top of the CSS file. They wouldn't work in IE if they were down here. CURSE YOU IE!!! */
+			.mobilenav {
+				display: block !important;
+				z-index: 9999;
+				position: fixed;
+				right: 0;
+			}
+
+			.div li, .div li a {
+				margin: 75px 0 -55px 0;
+				color: #ffffff;
+				font: 14pt "Roboto", sans-serif;
+				font-weight: 700;
+				line-height: 1.8;
+				text-decoration: none;
+				text-transform: none;
+				list-style: none;
+				outline: 0;
+				display: none;
+				margin-left: 60px;
+				animation: show-links .75s both;
+			}
+
+			.div li {
+				width: 230px;
+				text-indent: 56px;
+			}
+			
+			a:focus {
+				display: block;
+				color: #333;
+				background-color: #eee;
+				transition: all .5s;
+			}
+
+			#trigger, #burger, #burger:before, #burger:after {
+				position: absolute;
+				top: 25px;
+				right: 25px;
+				background: #ffffff;
+				width: 30px;
+				height: 5px;
+				transition: .2s ease;
+				cursor: pointer;
+				z-index: 999999;
+			}
+
+			#trigger {
+				height: 25px;
+				background: none;
+			}
+
+			#burger:before {
+				content: " ";
+				top: 10px;
+				right: 0;
+			}
+
+			#burger:after {
+				content: " ";
+				top: 20px;
+				right: 0;
+			}
+
+			#menu-toggle:checked + #trigger + #burger {
+				top: 35px;
+				transform: rotate(180deg);
+				transition: transform .2s ease;
+			}
+			
+			#menu-toggle:checked + #trigger + #burger:before {
+				width: 20px;
+				top: 9px;
+				right: 11px;
+				transform: rotate(45deg) translateX(-5px);
+				transition: transform .2s ease;
+			}
+
+			#menu-toggle:checked + #trigger + #burger:after {
+				width: 20px;
+				top: -9px;
+				right: 11px;
+				transform: rotate(-45deg) translateX(-5px);
+				transition: transform .2s ease;
+			}
+
+			#menu {
+				position: absolute;
+				right: 0;
+				margin: 0; 
+				padding: 0;
+				width: 110px;
+				height: 110px;
+				background-color: #FA9600;
+				border-bottom-left-radius: 100%;
+				box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+				animation: not-checked-anim .2s both;
+				transition: .2s;
+				z-index: 99999;
+			}
+
+			.div {
+				right: 0;
+				position: absolute;
+				height: auto;
+				width: auto;
+			}
+
+			#menu-toggle:checked + #trigger + #burger + #menu {
+				animation: checked-anim 1s ease both;
+			}
+
+			#menu-toggle:checked + #trigger ~ #menu > .div li, .div li a {
+				display: block;
+			}
+
+			[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+				display: none;
+			}
+			/* End of the styles for the mobile nav */
 		}
 
 		@media screen and (max-width: 900px) {
@@ -1053,6 +1229,10 @@
 			
 			.vc_custom_1577473665212 {
 				margin-bottom: -4.25% !important;
+			}
+
+			.nav-links p {
+				width: 60% !important;
 			}
 		}
 
@@ -1067,6 +1247,19 @@
 				float: left;
 				margin-left: 0%;
 				margin-right: 0%;
+			}
+
+			.landingimg {
+				display: none;
+			}
+
+			.landingtextboxsmall {
+				width: 100% !important;
+			}
+
+			.landingtitle {
+				font-size: 5vw;
+				margin-top: 5vw !important;
 			}
 		}
 
@@ -1096,6 +1289,10 @@
 			
 			.footerquote {
 				margin-top: -25% !important;
+			}
+
+			.bg-image {
+				margin-top: -167px !important;
 			}
 		}
 
@@ -1127,6 +1324,11 @@
 		@media screen and (max-width: 700px) {
 			.vc_custom_1577473665212 {
 				margin-bottom: -5.5% !important;
+			}
+
+			.landingtitle {
+				font-size: 6vw;
+				margin-top: 10vw !important;
 			}
 		}
 
@@ -1169,10 +1371,6 @@
 		}
 
 		@media screen and (max-width: 411px) {
-			.desktopinfo {
-				display: none;
-			}
-
 			.mobileinfo {
 				display: block;
 			}
@@ -1306,6 +1504,14 @@
 				color: #393f47 !important;
 				margin: 0 !important;
 			}
+
+			.bg-image {
+				margin-top: -167px !important;
+			}
+
+			.mobileinfo {
+				display: none;
+			}
 		}
 
 		.biggernavbox {
@@ -1349,6 +1555,18 @@
 		.landingtitle {
 			margin-top: 20vh;
 		}
+
+		.maindesktoplogo {
+			display: inline;
+		}
+
+		.mainmobilelogo {
+			display: none;
+		}
+
+		.mobilenav {
+			display: none;
+		}
 	</style>
 	<noscript>
 		<style type="text/css">
@@ -1359,6 +1577,20 @@
 	</noscript>
 </head>
 <body class="home page-template-default page page-id-12 extensive-vc-1.8 mobile-cart-position-top one-pager wpb-js-composer js-comp-ver-6.0.2 vc_responsive evc-predefined-style">
+	<div class="mobilenav">
+        <input type="checkbox" id="menu-toggle" />
+        <label id="trigger" for="menu-toggle"></label>
+        <label id="burger" for="menu-toggle"></label>
+        <ul id="menu">
+            <div class="div">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Who We Are</a></li>
+                <li><a href="#services">Portfolio</a></li>
+                <li><a href="#insights">Services</a></li>
+                <li><a href="#contact">Quote</a></li>
+            </div>
+        </ul>
+    </div>
 	<div id="page" class="layout-fullwidth header-style-3">
 		<a href="#page" class="scroll-top-button"></a>
 		<div id="site-header-wrapper"  class="" >		
@@ -1403,7 +1635,10 @@
 																							<span class="headerlocat">
 																								<!-- <img class="alignnone size-full wp-image-123" src="./wp-content/uploads/2019/12/Wht-Location-Icon.png" alt="" width="15" height="22" /> 
 																								<span style="color: #f9fafd;">Ottawa | Toronto | London</span> -->
-																								<img width="200" src="./wp-content/uploads/2019/12/logo-blue-1200x627.png" class="vc_single_image-img attachment-large" alt="" srcset="./wp-content/uploads/2019/12/logo-blue-1200x627.png 682w, ./wp-content/uploads/2019/12/logo-blue-1200x627.png 300w" sizes="(max-width: 682px) 100vw, 682px" />
+																								<!-- desktop logo -->
+																								<img width="200" src="./wp-content/uploads/2019/12/logo-blue-1200x627.png" class="vc_single_image-img attachment-large maindesktoplogo" alt="" srcset="./wp-content/uploads/2019/12/logo-blue-1200x627.png 682w, ./wp-content/uploads/2019/12/logo-blue-1200x627.png 300w" sizes="(max-width: 682px) 100vw, 682px" />
+																								<!-- mobile logo -->
+																								<img width="200" src="./wp-content/uploads/2019/12/logo-white-1200x627.png" class="vc_single_image-img attachment-large mainmobilelogo" alt="" srcset="./wp-content/uploads/2019/12/logo-white-1200x627.png 682w, ./wp-content/uploads/2019/12/logo-white-1200x627.png 300w" sizes="(max-width: 682px) 100vw, 682px" />
 																							</span>
 																							<span class="headermobile" style="display: none;">
 																								<a href="tel:226-448-9763">
@@ -1441,16 +1676,6 @@
 																								<a href="#whoweare" >Who We Are</a>
 																								<a href="#portfolio">Portfolio</a>
 																								<a href="#services">Services</a>
-																							<!-- </span>
-																						</p>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="headercolumn wpb_column vc_column_container vc_col-sm-4">
-																		<div class="vc_column-inner">
-																			<div class="wpb_wrapper"> -->
 																								<div class="gem-button-container gem-button-position-inline QUOTEONE hvr-float-shadow">
 																									<a class="gem-button gem-button-size-medium gem-button-style-flat gem-button-text-weight-normal gem-button-icon-position-right" style="border-radius: 10px;background-color: #FA9600;color: #f9fafd; margin: 0px;" onmouseleave="this.style.backgroundColor='#FA9600';this.style.color='#f9fafd';" onmouseenter="" href="#contact" target="_self">
 																										GET A QUOTE<i class="gem-print-icon gem-icon-pack-elegant">&#xe101;</i>
@@ -1487,14 +1712,14 @@
 																				</div>
 																				<div  class="wpb_single_image wpb_content_element vc_align_right  wpb_animate_when_almost_visible wpb_fadeInUp fadeInUp">
 																					<figure class="wpb_wrapper vc_figure" style="width: 100%;">
-																						<div style="width: 50%; float: left; text-align: left;">
+																						<div class="landingtextboxsmall" style="width: 50%; float: left; text-align: left;">
 																							<h2 class="landingtitle" style="color: #000000;">Get the Results You Want with the Website you Need</h2>
-																							<p style="color: #000000">Your website tells the world who you are and what you do. Visitors will have a positive experience that leaves them knowing you’re exactly what they’re looking for.
+																							<p class="landingtext" style="color: #000000">Your website tells the world who you are and what you do. Visitors will have a positive experience that leaves them knowing you’re exactly what they’re looking for.
 																								We’ll work with you to understand your brand and vision. Then we’ll build your website.  Get ready to exceed what you thought possible.
 																								</p>
 																						</div>
 																						<div class="vc_single_image-wrapper vc_box_border_grey" style="float: right; width: 50%">
-																							<img style="max-width: 80%; border-radius: 64px 64px 64px 64px; -moz-border-radius: 64px 64px 64px 64px; -webkit-border-radius: 64px 64px 64px 64px; border: 10px solid #ffffff;float: right;"  src="./wp-content/uploads/2019/12/brooke-cagle--uHVRvDr7pg-unsplashsmall.jpg" class="vc_single_image-img attachment-large" alt="" srcset="./wp-content/uploads/2019/12/brooke-cagle--uHVRvDr7pg-unsplashsmall.jpg 682w, ./wp-content/uploads/2019/12/brooke-cagle--uHVRvDr7pg-unsplashsmall.jpg 300w"/>
+																							<img style="max-width: 80%; border-radius: 64px 64px 64px 64px; -moz-border-radius: 64px 64px 64px 64px; -webkit-border-radius: 64px 64px 64px 64px; border: 10px solid #ffffff;float: right;"  src="./wp-content/uploads/2019/12/brooke-cagle--uHVRvDr7pg-unsplashsmall.jpg" class="vc_single_image-img attachment-large landingimg" alt="" srcset="./wp-content/uploads/2019/12/brooke-cagle--uHVRvDr7pg-unsplashsmall.jpg 682w, ./wp-content/uploads/2019/12/brooke-cagle--uHVRvDr7pg-unsplashsmall.jpg 300w"/>
 																						</div>
 																					</figure>
 																				</div>
